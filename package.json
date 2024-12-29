@@ -9,6 +9,9 @@
 			"import": "./dist/schema.js"
 		}
 	},
+	"scripts": {
+		"build": "tsc"
+	},
 	"peerDependencies": {
 		"effect": "3.12.x"
 	},
