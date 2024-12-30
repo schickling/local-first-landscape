@@ -23,8 +23,9 @@ export const repos: ReadonlyArray<RepoInfo> = [
   },
   {
     id: 'jazz',
-    owner: 'livestorejs',
+    owner: 'schickling',
     repo: 'local-first-landscape',
+    basePath: 'temporary-technology-info/jazz',
   },
   {
     id: 'zero',

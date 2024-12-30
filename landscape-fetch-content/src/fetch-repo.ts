@@ -12,7 +12,7 @@ const FileResponseSuccessSchema = Schema.Struct({
   git_url: Schema.String,
   download_url: Schema.String,
   type: Schema.String,
-  content: Schema.StringFromBase64,
+  content: Schema.Uint8ArrayFromBase64,
   encoding: Schema.String,
   _links: Schema.Struct({
     self: Schema.String,
@@ -34,7 +34,7 @@ const FileResponseSchema = Schema.Union(
 
 export const fetchRepo = (repoInfo: RepoInfo) =>
   Effect.gen(function* () {
-    const { owner, repo } = repoInfo
+    const { owner, repo, basePath } = repoInfo
     const filesToFetch = [
       'data.js',
       'logo.light.svg',
@@ -45,9 +45,12 @@ export const fetchRepo = (repoInfo: RepoInfo) =>
 
     const results = yield* Effect.forEach(filesToFetch, (file) =>
       Effect.gen(function* () {
-        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${file}`
+        const pathPrefix = basePath ? `${basePath}/` : ''
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${pathPrefix}${file}`
         const response = yield* Effect.tryPromise(() =>
-          fetch(url).then((response) => response.json()),
+          fetch(url, {
+            headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` },
+          }).then((response) => response.json()),
         )
 
         const decoded = yield* Schema.decodeUnknown(FileResponseSuccessSchema)(
@@ -58,7 +61,10 @@ export const fetchRepo = (repoInfo: RepoInfo) =>
           name: file,
           content: decoded.content,
         }
-      }).pipe(Effect.option),
+      }).pipe(
+        // Effect.tapErrorCause(Effect.logError),
+        Effect.option,
+      ),
     ).pipe(Effect.map((_) => ReadonlyArray.filterMap(_, (_) => _)))
 
     const data = results.find((_) => _.name === 'data.js')
@@ -69,7 +75,10 @@ export const fetchRepo = (repoInfo: RepoInfo) =>
       return Option.none()
     }
 
-    if ((yield* isCodeValid(data.content)) === false) {
+    const stringFromUint8Array = (uint8Array: Uint8Array) =>
+      new TextDecoder().decode(uint8Array)
+
+    if ((yield* isCodeValid(stringFromUint8Array(data.content))) === false) {
       return Option.none()
     }
 

@@ -1,11 +1,11 @@
 import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 
 export const data = LandscapeSchema.make({
-  Id: 'jazz',
-  Name: 'Jazz',
+  Id: 'y-sweet',
+  Name: 'Y-Sweet',
   Description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  Website: 'https://jazz.tools',
+  Website: 'https://github.com/jamsocket/y-sweet',
   Deployment: 'Self-hosted',
   License: 'MIT',
   AppTarget: {

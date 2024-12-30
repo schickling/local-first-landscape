@@ -17,7 +17,10 @@ const fetchContentCommand = Cli.Command.make(
       const fs = yield* FileSystem.FileSystem
 
       if (
-        yield* fs.readDirectory(targetDir).pipe(Effect.map((_) => _.length > 0))
+        (yield* fs.exists(targetDir)) &&
+        (yield* fs
+          .readDirectory(targetDir)
+          .pipe(Effect.map((_) => _.length > 0)))
       ) {
         const confirmed = yield* Cli.Prompt.confirm({
           message:
@@ -30,6 +33,8 @@ const fetchContentCommand = Cli.Command.make(
           yield* Effect.log('Aborting')
           return
         }
+
+        yield* fs.makeDirectory(targetDir, { recursive: true })
       }
 
       const repoResults = yield* Effect.forEach(repos, fetchRepo, {
@@ -45,24 +50,26 @@ const fetchContentCommand = Cli.Command.make(
 
         yield* fs.makeDirectory(dir, { recursive: true })
         for (const { name, content } of Object.values(repoResult.files)) {
-          yield* fs.writeFileString(path.join(dir, name), content)
+          yield* fs.writeFile(path.join(dir, name), content)
         }
       }
+
+      // Replace all invalid characters with underscores
+      const idToVarName = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_')
 
       const modFileContent = `\
 ${repoResults
   .map(
     (repo) =>
-      `import { data as ${repo.repoInfo.id} } from './${repo.repoInfo.id}/${repo.files.data.name}'`,
+      `import { data as ${idToVarName(repo.repoInfo.id)} } from './${repo.repoInfo.id}/${repo.files.data.name}'`,
   )
   .join('\n')}
 
 ${repoResults
   .map(
-    (
-      repo,
-    ) => `import ${repo.repoInfo.id}LogoLight from './${repo.repoInfo.id}/${repo.files.logoLight.name}'
-import ${repo.repoInfo.id}LogoDark from './${repo.repoInfo.id}/${repo.files.logoDark.name}'`,
+    (repo) =>
+      `import ${idToVarName(repo.repoInfo.id)}LogoLight from './${repo.repoInfo.id}/${repo.files.logoLight.name}'
+import ${idToVarName(repo.repoInfo.id)}LogoDark from './${repo.repoInfo.id}/${repo.files.logoDark.name}'`,
   )
   .join('\n')}
 
@@ -70,7 +77,9 @@ export const data = [
   ${repoResults
     .map(
       (repo) =>
-        `{ ...${repo.repoInfo.id}, Logo: { Light: ${repo.repoInfo.id}LogoLight, Dark: ${repo.repoInfo.id}LogoDark } }`,
+        `{ ...${idToVarName(repo.repoInfo.id)}, Logo: { Light: ${idToVarName(
+          repo.repoInfo.id,
+        )}LogoLight, Dark: ${idToVarName(repo.repoInfo.id)}LogoDark } }`,
     )
     .join(',\n  ')}
 ]
