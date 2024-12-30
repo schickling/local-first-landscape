@@ -1,0 +1,12 @@
+{
+	"name": "@localfirstfm/landscape-content-snapshot",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"dependencies": {
+		"@localfirstfm/landscape-schema": "workspace:*"
+	},
+	"devDependencies": {
+		"typescript": "^5.7.2"
+	}
+}

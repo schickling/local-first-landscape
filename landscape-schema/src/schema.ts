@@ -281,7 +281,7 @@ export const Logo = Schema.Struct({
   Dark: Schema.String.pipe(Schema.optional),
 })
 
-const schemaVersion = '0.0.1'
+export const schemaVersion = '0.0.1'
 
 export const LandscapeSchema = Schema.Struct({
   Version: Schema.Literal(schemaVersion)

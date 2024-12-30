@@ -1,17 +1,22 @@
 {
-	"name": "@localfirstfm/landscape",
+	"name": "@localfirstfm/landscape-schema",
 	"version": "0.0.0",
-	"dependencies": {},
 	"type": "module",
 	"exports": {
 		".": {
-			"types": "./dist/schema.d.ts",
-			"import": "./dist/schema.js"
+			"types": "./dist/mod.d.ts",
+			"default": "./dist/mod.js"
 		}
 	},
+	"types": "./dist/mod.d.ts",
+	"files": [
+		"dist",
+		"src"
+	],
 	"scripts": {
 		"build": "tsc"
 	},
+	"dependencies": {},
 	"peerDependencies": {
 		"effect": "3.12.x"
 	},
