@@ -1,4 +1,11 @@
 {
 	"name": "@localfirstfm/landscape-mono",
-	"private": true
+	"private": true,
+	"scripts": {
+		"build:ts": "tsc --build tsconfig.all.json"
+	},
+	"devDependencies": {
+		"typescript": "^5.7.2",
+		"@biomejs/biome": "1.9.4"
+	}
 }

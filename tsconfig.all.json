@@ -1,0 +1,8 @@
+{
+  "include": [],
+  "references": [
+    { "path": "./landscape-schema" },
+    { "path": "./landscape-fetch-content" },
+    { "path": "./landscape-content-snapshot" }
+  ]
+}
