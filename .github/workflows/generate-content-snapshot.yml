@@ -1,0 +1,50 @@
+name: Generate Content Snapshot
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every day
+    - cron: '0 0 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      # Add pnpm cache
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - run: bun install -g pnpm
+      - run: pnpm install
+      - run: pnpm build:ts
+
+      - name: Generate content snapshot
+        run: pnpm generate:content-snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git add .
+          # Set output whether there are changes staged
+          echo "changes=$(git diff --staged --quiet && echo 'false' || echo 'true')" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if there are changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "chore: update content snapshot [skip ci]"
+          git push
