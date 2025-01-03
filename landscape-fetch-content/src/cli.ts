@@ -8,13 +8,22 @@ import { fetchRepo } from './fetch-repo.js'
 import path from 'node:path'
 
 const targetDirOption = Cli.Options.directory('target-dir')
+const overrideTargetDirOption = Cli.Options.boolean('override-target-dir').pipe(
+  Cli.Options.withDefault(false),
+)
 
 const fetchContentCommand = Cli.Command.make(
   'fetch-content',
-  { targetDir: targetDirOption },
-  ({ targetDir }) =>
+  { targetDir: targetDirOption, overrideTargetDir: overrideTargetDirOption },
+  ({ targetDir, overrideTargetDir }) =>
     Effect.gen(function* () {
       const fs = yield* FileSystem.FileSystem
+
+      if (!process.env.GITHUB_TOKEN) {
+        throw new Error('GITHUB_TOKEN is not set')
+      }
+
+      console.log('targetDir', targetDir)
 
       if (
         (yield* fs.exists(targetDir)) &&
@@ -22,10 +31,12 @@ const fetchContentCommand = Cli.Command.make(
           .readDirectory(targetDir)
           .pipe(Effect.map((_) => _.length > 0)))
       ) {
-        const confirmed = yield* Cli.Prompt.confirm({
-          message:
-            'Target directory is not empty. Please confirm you want to overwrite it.',
-        })
+        const confirmed =
+          overrideTargetDir ||
+          (yield* Cli.Prompt.confirm({
+            message:
+              'Target directory is not empty. Please confirm you want to overwrite it.',
+          }))
 
         if (confirmed) {
           yield* fs.remove(targetDir, { recursive: true })
@@ -53,6 +64,8 @@ const fetchContentCommand = Cli.Command.make(
           yield* fs.writeFile(path.join(dir, name), content)
         }
       }
+
+      // console.log('repoResults', repoResults)
 
       const ambientDtsContent = `\
 declare module '*.svg' {
