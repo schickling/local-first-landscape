@@ -54,6 +54,23 @@ const fetchContentCommand = Cli.Command.make(
         }
       }
 
+      const ambientDtsContent = `\
+declare module '*.svg' {
+  const content: any
+  export default content
+}
+
+declare module '*.png' {
+  const content: any
+  export default content
+}
+`
+
+      yield* fs.writeFileString(
+        path.join(targetDir, 'ambient.d.ts'),
+        ambientDtsContent,
+      )
+
       // Replace all invalid characters with underscores
       const idToVarName = (id: string) => id.replace(/[^a-zA-Z0-9]/g, '_')
 
