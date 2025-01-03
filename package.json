@@ -2,7 +2,8 @@
 	"name": "@localfirstfm/landscape-mono",
 	"private": true,
 	"scripts": {
-		"build:ts": "tsc --build tsconfig.all.json"
+		"build:ts": "tsc --build tsconfig.all.json",
+		"generate:content-snapshot": "pnpm --filter @localfirstfm/landscape-fetch-content exec bun ./src/cli.ts --target-dir=../landscape-content-snapshot/src/generated --override-target-dir"
 	},
 	"devDependencies": {
 		"typescript": "^5.7.2",
