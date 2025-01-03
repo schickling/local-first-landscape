@@ -4,7 +4,7 @@ export const data = LandscapeSchema.make({
   Id: 'zero',
   Name: 'Zero',
   Description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    'Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   Website: 'https://zerosync.dev',
   Deployment: 'Self-hosted',
   License: 'MIT',
