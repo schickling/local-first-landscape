@@ -4,7 +4,8 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"build": "tsc"
+		"build": "tsc",
+		"fetch-content": "bun src/cli.ts --target-dir ../landscape-content-snapshot/src/generated"
 	},
 	"dependencies": {
 		"@localfirstfm/landscape-schema": "workspace:*",
