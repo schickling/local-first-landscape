@@ -4,7 +4,7 @@ export const data = LandscapeSchema.make({
   Id: 'basicdb',
   Name: 'BasicDB',
   Description:
-    'Lorem ipsum yo2 dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    'Lorem ipsum yo4 dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   Website: 'https://basic.tech',
   Deployment: 'Self-hosted',
   License: 'MIT',
