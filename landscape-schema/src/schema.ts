@@ -22,6 +22,7 @@ export const AppTarget = Schema.Struct({
     'c#',
     'rust',
     'java',
+    'python',
   )
     .pipe(orString, Schema.Array, Schema.optional)
     .annotations({
@@ -34,6 +35,8 @@ export const AppTarget = Schema.Struct({
     'React Native',
     'Flutter',
     'SwiftUI',
+    'Zustand',
+    'Jetpack Compose',
   ).pipe(orString, Schema.Array, Schema.optional),
 })
 
