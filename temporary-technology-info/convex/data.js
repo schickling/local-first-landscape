@@ -3,36 +3,25 @@ import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 export const data = LandscapeSchema.make({
   Id: 'convex',
   Name: 'Convex',
-  Description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   Website: 'https://convex.dev',
-  Deployment: 'Self-hosted',
-  License: 'MIT',
-  AppTarget: {
-    LanguageSDK: ['typescript'],
-  },
-  Networking: {
-    Topology: 'P2P',
-  },
+  License: 'FSL-1.1-Apache-2.0',
+  Deployment: ['Hosted', 'Self-hostable'],
   ServerSideData: {
-    PersistenceMechanism: 'N/A',
-    DataModelParadigm: 'Document',
+    SchemaManagement: ['Schema definition', 'Schema Validation'],
   },
   ClientSideData: {
-    QueryAPI: 'Async',
-    PersistenceMechanism: 'IndexedDB',
-    PersistenceFeatures: 'Indexes',
-    DataModel: 'Document',
-    OfflineReads: 'Full Support',
-    OfflineWrites: 'Local conflict resolution',
-    DataSize: 'Up to 5-10 MB per document',
+    OfflineReads: 'Query Cache',
+    OfflineWrites: 'No Support',
+    DataSize: 'local cache size up to ???mb',
   },
   SynchronizationStrategy: {
-    FullOrPartialReplication: ['Full Replication'],
-    ConflictHandling: 'Automatic via CRDT',
-    WhereResolutionOccurs: 'Client',
+    FullOrPartialReplication: ['Partial Replication'],
+    ConflictHandling: 'Optimistic concurrency control',
+    WhereResolutionOccurs: 'Server',
     WhatGetsSynced: {
-      ClientToClient: 'Ops',
+      ClientToServer: 'mutations',
+      ServerToClient: 'query results'
     },
+    Authority: 'Centralized',
   },
 })

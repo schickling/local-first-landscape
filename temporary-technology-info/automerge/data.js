@@ -3,16 +3,11 @@ import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 export const data = LandscapeSchema.make({
   Id: 'automerge',
   Name: 'Automerge',
-  Description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   Website: 'https://automerge.org',
-  Deployment: 'Self-hosted',
   License: 'MIT',
-  AppTarget: {
-    LanguageSDK: ['typescript'],
-  },
+  Deployment: 'Self-hosted',
   Networking: {
-    Topology: 'P2P',
+    Topology: 'P2P via Relay Servers',
   },
   ServerSideData: {
     PersistenceMechanism: 'N/A',
@@ -21,18 +16,19 @@ export const data = LandscapeSchema.make({
   ClientSideData: {
     QueryAPI: 'Async',
     PersistenceMechanism: 'IndexedDB',
-    PersistenceFeatures: 'Indexes',
     DataModel: 'Document',
     OfflineReads: 'Full Support',
-    OfflineWrites: 'Local conflict resolution',
-    DataSize: 'Up to 5-10 MB per document',
+    OfflineWrites: 'Full local conflict resolution',
+    DataSize: 'up to 5-10mb per doc',
   },
   SynchronizationStrategy: {
     FullOrPartialReplication: ['Full Replication'],
     ConflictHandling: 'Automatic via CRDT',
     WhereResolutionOccurs: 'Client',
     WhatGetsSynced: {
-      ClientToClient: 'Ops',
+      ClientToClient: 'ops',
+      ServerToClient: 'future: snapshots via relays'
     },
+    Authority: 'Decentralized',
   },
 })

@@ -3,36 +3,29 @@ import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 export const data = LandscapeSchema.make({
   Id: 'electricsql',
   Name: 'ElectricSQL',
-  Description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   Website: 'https://electric-sql.com',
+  License: 'Apache 2',
   Deployment: 'Self-hosted',
-  License: 'MIT',
   AppTarget: {
-    LanguageSDK: ['typescript'],
-  },
-  Networking: {
-    Topology: 'P2P',
+    Platform: ['js:browser', 'js:server-side'],
   },
   ServerSideData: {
-    PersistenceMechanism: 'N/A',
-    DataModelParadigm: 'Document',
+    PersistenceMechanism: 'Postgres',
+    DataModelParadigm: 'Relational',
   },
   ClientSideData: {
-    QueryAPI: 'Async',
-    PersistenceMechanism: 'IndexedDB',
-    PersistenceFeatures: 'Indexes',
-    DataModel: 'Document',
+    PersistenceMechanism: ['IndexedDB', 'PGLite via OPFS'],
+    DataModel: 'Relational',
     OfflineReads: 'Full Support',
-    OfflineWrites: 'Local conflict resolution',
-    DataSize: 'Up to 5-10 MB per document',
+    DataSize: '10-100mb depending on storage chosen',
   },
   SynchronizationStrategy: {
-    FullOrPartialReplication: ['Full Replication'],
-    ConflictHandling: 'Automatic via CRDT',
-    WhereResolutionOccurs: 'Client',
+    FullOrPartialReplication: ['Partial Replication'],
+    ConflictHandling: 'No Support',
+    WhereResolutionOccurs: 'Server',
     WhatGetsSynced: {
-      ClientToClient: 'Ops',
+      ServerToClient: 'shape updates'
     },
+    Authority: 'Centralized',
   },
 })

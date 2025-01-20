@@ -1,17 +1,16 @@
 import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 
 export const data = LandscapeSchema.make({
-  Id: 'liveblocks',
-  Name: 'Liveblocks',
-  Description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  Website: 'https://liveblocks.io',
-  Deployment: 'Self-hosted',
+  Id: 'dxos',
+  Name: 'DXOS',
+  Website: 'https://dxos.org',
   License: 'MIT',
   AppTarget: {
+    Platform: ['js:browser', 'js:server-side'],
     LanguageSDK: ['typescript'],
   },
   Networking: {
+    Protocol: ['WebSockets'],
     Topology: 'P2P',
   },
   ServerSideData: {
@@ -19,20 +18,21 @@ export const data = LandscapeSchema.make({
     DataModelParadigm: 'Document',
   },
   ClientSideData: {
-    QueryAPI: 'Async',
+    QueryAPI: ['Async', 'Signals-based Reactivity'],
+    LocalRefreshLatency: '10-50ms',
     PersistenceMechanism: 'IndexedDB',
-    PersistenceFeatures: 'Indexes',
     DataModel: 'Document',
     OfflineReads: 'Full Support',
-    OfflineWrites: 'Local conflict resolution',
-    DataSize: 'Up to 5-10 MB per document',
+    OfflineWrites: 'Full local conflict resolution',
+    DataSize: 'up to 100mb per space',
   },
   SynchronizationStrategy: {
     FullOrPartialReplication: ['Full Replication'],
     ConflictHandling: 'Automatic via CRDT',
     WhereResolutionOccurs: 'Client',
     WhatGetsSynced: {
-      ClientToClient: 'Ops',
+      ClientToClient: 'see automerge'
     },
+    Authority: 'Decentralized',
   },
 })

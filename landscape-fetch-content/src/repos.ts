@@ -34,9 +34,27 @@ export const repos: ReadonlyArray<RepoInfo> = [
     basePath: 'temporary-technology-info/zero',
   },
   {
+    id: 'liveblocks-yjs',
+    owner: 'schickling',
+    repo: 'local-first-landscape',
+    basePath: 'temporary-technology-info/liveblocks-yjs',
+  },
+  {
+    id: 'liveblocks-storage',
+    owner: 'schickling',
+    repo: 'local-first-landscape',
+    basePath: 'temporary-technology-info/liveblocks-storage',
+  },
+  {
     id: 'livestore',
     owner: 'livestorejs',
     repo: 'local-first-landscape',
+  },
+  {
+    id: 'dxos',
+    owner: 'schickling',
+    repo: 'local-first-landscape',
+    basePath: 'temporary-technology-info/dxos',
   },
   {
     id: 'basicdb',

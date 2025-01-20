@@ -3,36 +3,44 @@ import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 export const data = LandscapeSchema.make({
   Id: 'y-sweet',
   Name: 'Y-Sweet',
-  Description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  Website: 'https://github.com/jamsocket/y-sweet',
-  Deployment: 'Self-hosted',
+  Website: 'https://y-sweet.dev',
   License: 'MIT',
+  Deployment: ['Self-hosted', 'Hosted'],
   AppTarget: {
-    LanguageSDK: ['typescript'],
+    Platform: ['js:browser', 'js:server-side'],
+    LanguageSDK: ['typescript', 'python'],
+    FrameworkIntegrations: ['React'],
   },
   Networking: {
-    Topology: 'P2P',
+    Protocol: ['WebSocket', 'HTTP'],
+    Topology: 'Client-Server',
   },
   ServerSideData: {
-    PersistenceMechanism: 'N/A',
+    PersistenceMechanism: 'S3-compatible object store',
     DataModelParadigm: 'Document',
+    ExistingDatabaseSupport: 'Yes, in the "Figma architecture" sense: ground-truth document data only lives on S3, but document metadata exists in your existing DB',
   },
   ClientSideData: {
-    QueryAPI: 'Async',
-    PersistenceMechanism: 'IndexedDB',
-    PersistenceFeatures: 'Indexes',
+    LocalRefreshLatency: '<1 ms',
+    PersistenceMechanism: 'Yes',
     DataModel: 'Document',
-    OfflineReads: 'Full Support',
-    OfflineWrites: 'Local conflict resolution',
-    DataSize: 'Up to 5-10 MB per document',
+    OfflineReads: 'Yes',
+    OptimisticUpdates: 'Yes',
+    OfflineWrites: 'Yes',
   },
   SynchronizationStrategy: {
-    FullOrPartialReplication: ['Full Replication'],
-    ConflictHandling: 'Automatic via CRDT',
-    WhereResolutionOccurs: 'Client',
+    ConflictHandling: 'CRDT (YATA)',
+    WhereResolutionOccurs: 'Server',
     WhatGetsSynced: {
-      ClientToClient: 'Ops',
+      ClientToServer: 'mutations'
     },
+    Authority: 'Centralized',
+  },
+  AuthIdentity: {
+    Encryption: 'Subject to the underlying object store used; most encrypt at rest by default; AES-GCM encryption on the client',
+    AuthenticationMethod: 'Auth delegation from your application server based on temporary tokens',
+  },
+  UIRelated: {
+    Components: ['Yes\nAnything compatible with Yjs (Slate, BlockNote, Quill, Lexical, etc.)'],
   },
 })
