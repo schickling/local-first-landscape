@@ -16,13 +16,13 @@ export const data = LandscapeSchema.make({
     Topology: 'Client-Server',
   },
   ServerSideData: {
-    PersistenceMechanism: 'S3-compatible object store',
+    PersistenceMechanism: ['S3-compatible object store'],
     DataModelParadigm: 'Document',
     ExistingDatabaseSupport: 'Yes, in the "Figma architecture" sense: ground-truth document data only lives on S3, but document metadata exists in your existing DB',
   },
   ClientSideData: {
     LocalRefreshLatency: '<1 ms',
-    PersistenceMechanism: 'Yes',
+    PersistenceMechanism: ['Yes'],
     DataModel: 'Document',
     OfflineReads: 'Yes',
     OptimisticUpdates: 'Yes',
@@ -38,7 +38,7 @@ export const data = LandscapeSchema.make({
   },
   AuthIdentity: {
     Encryption: 'Subject to the underlying object store used; most encrypt at rest by default; AES-GCM encryption on the client',
-    AuthenticationMethod: 'Auth delegation from your application server based on temporary tokens',
+    AuthenticationMethod: ['Auth delegation from your application server based on temporary tokens'],
   },
   UIRelated: {
     Components: ['Yes\nAnything compatible with Yjs (Slate, BlockNote, Quill, Lexical, etc.)'],

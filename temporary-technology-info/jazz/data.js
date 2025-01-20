@@ -41,7 +41,7 @@ export const data = LandscapeSchema.make({
   },
   AuthIdentity: {
     Encryption: 'Built-in e2ee',
-    AuthenticationMethod: 'Built-in',
+    AuthenticationMethod: ['Built-in'],
     AuthorizationPermissions: 'Built-in cryptographical hierarchical RBAC',
   },
   UIRelated: {
@@ -49,7 +49,7 @@ export const data = LandscapeSchema.make({
     Components: ['File upload', 'progressive image loading'],
   },
   DevelopmentWorkflowsDX: {
-    DebuggingTools: 'Data inspector',
+    DebuggingTools: ['Data Inspector'],
     CLI: 'CLI for running local sync & storage server, for creating worker account',
     TypeSupport: 'Full type support without extra config',
   },

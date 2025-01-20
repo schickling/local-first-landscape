@@ -24,7 +24,7 @@ export const data = LandscapeSchema.make({
   ClientSideData: {
     QueryAPI: ['Async', 'Signals-based Reactivity'],
     PersistenceMechanism: ['SQLite', 'IndexedDB', 'OPFS'],
-    PersistenceFeatures: ['FTS', 'Indexes', 'Transactions'],
+    PersistenceFeatures: 'FTS, Indexes, Transactions',
     DataModel: 'Relational',
     OfflineReads: 'Full Support',
     OptimisticUpdates: 'Yes',
@@ -42,11 +42,11 @@ export const data = LandscapeSchema.make({
   },
   AuthIdentity: {
     Encryption: 'transport-level and storage-level locally on the device using SQLCipher; E2EE can also be accomplished by syncing encrypted data and decrypting on client',
-    AuthenticationMethod: 'JWT Tokens',
+    AuthenticationMethod: ['JWT Tokens'],
     AuthorizationPermissions: 'Reads: Access to data is controlled by authenticated parameters in JWT used in Sync Rules\n\nWrites: Access controlled using developer\'s own backend (through which writes go to)',
   },
   DevelopmentWorkflowsDX: {
-    DebuggingTools: ['Dashboard', 'Database browser'],
+    DebuggingTools: ['Dashboard', 'Data Inspector'],
     CLI: 'CLI for managing cloud instances of PowerSync Service',
   },
 })

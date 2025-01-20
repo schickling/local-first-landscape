@@ -5,17 +5,17 @@ export const data = LandscapeSchema.make({
   Name: 'Automerge',
   Website: 'https://automerge.org',
   License: 'MIT',
-  Deployment: 'Self-hosted',
+  Deployment: ['Self-hosted'],
   Networking: {
     Topology: 'P2P via Relay Servers',
   },
   ServerSideData: {
-    PersistenceMechanism: 'N/A',
+    PersistenceMechanism: ['N/A'],
     DataModelParadigm: 'Document',
   },
   ClientSideData: {
-    QueryAPI: 'Async',
-    PersistenceMechanism: 'IndexedDB',
+    QueryAPI: ['Async'],
+    PersistenceMechanism: ['IndexedDB'],
     DataModel: 'Document',
     OfflineReads: 'Full Support',
     OfflineWrites: 'Full local conflict resolution',

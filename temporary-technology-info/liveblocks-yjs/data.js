@@ -5,7 +5,7 @@ export const data = LandscapeSchema.make({
   Name: 'Liveblocks Yjs',
   Website: 'https://liveblocks.io',
   License: 'Proprietary',
-  Deployment: 'Hosted',
+  Deployment: ['Hosted'],
   AppTarget: {
     Platform: ['js:browser', 'js:server-side'],
     LanguageSDK: ['typescript'],
@@ -21,7 +21,7 @@ export const data = LandscapeSchema.make({
   },
   ClientSideData: {
     LocalRefreshLatency: '<1ms',
-    PersistenceMechanism: 'Liveblocks Yjs',
+    PersistenceMechanism: ['Liveblocks Yjs'],
     DataModel: 'Document',
     OfflineReads: 'In beta',
     OfflineWrites: 'In beta',
@@ -37,14 +37,14 @@ export const data = LandscapeSchema.make({
   },
   AuthIdentity: {
     AuthenticationMethod: ['Built-in', 'Full Custom'],
-    AuthorizationPermissions: ['ID tokens', 'Access tokens'],
+    AuthorizationPermissions: 'ID tokens and Access tokens',
   },
   UIRelated: {
     RichTextEditing: 'Liveblocks Text Editor (wrapper around Yjs with Lexical and TipTap plugins)',
     Components: ['Comments/Threads', 'Notifications', 'Y.js plugins'],
   },
   DevelopmentWorkflowsDX: {
-    DebuggingTools: ['DevTools', 'Dashboard'],
+    DebuggingTools: ['DevTools', 'Dashboard', 'Data Inspector'],
     CLI: 'CLI for installing examples, updating packages, creating your typescript config',
   },
 })

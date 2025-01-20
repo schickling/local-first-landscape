@@ -5,6 +5,7 @@ export const data = LandscapeSchema.make({
   Name: 'Zero',
   Website: 'https://getzero.dev',
   License: 'TBD',
+  Deployment: ['Self-hosted'],
   AppTarget: {
     Platform: ['js:browser', 'js:server-side'],
     FrameworkIntegrations: ['React Native'],
@@ -14,15 +15,15 @@ export const data = LandscapeSchema.make({
     Topology: 'Client-Server',
   },
   ServerSideData: {
-    PersistenceMechanism: 'Postgres',
+    PersistenceMechanism: ['Postgres'],
     DataModelParadigm: 'Relational',
-    SchemaManagement: 'Zero has built-in support for migrating schemas seamlessly across client and server',
+    SchemaManagement: ['Zero has built-in support for migrating schemas seamlessly across client and server'],
     ExistingDatabaseSupport: 'Yes',
   },
   ClientSideData: {
-    QueryAPI: 'Reactive relational queries',
+    QueryAPI: ['Reactive relational queries'],
     LocalRefreshLatency: '<1ms',
-    PersistenceMechanism: 'IndexedDB',
+    PersistenceMechanism: ['IndexedDB'],
     DataModel: 'Relational',
     OfflineReads: 'Developers choose data to be cached via query. Data is available to be queried while offline (even with novel queries)',
     OptimisticUpdates: 'Optimistic updates',

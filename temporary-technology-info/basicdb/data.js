@@ -3,36 +3,9 @@ import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 export const data = LandscapeSchema.make({
   Id: 'basicdb',
   Name: 'BasicDB',
-  Description:
-    'Lorem ipsum yo4 dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   Website: 'https://basic.tech',
-  Deployment: 'Self-hosted',
-  License: 'MIT',
+  Deployment: ['Self-hosted'],
   AppTarget: {
-    LanguageSDK: ['typescript'],
-  },
-  Networking: {
-    Topology: 'P2P',
-  },
-  ServerSideData: {
-    PersistenceMechanism: 'N/A',
-    DataModelParadigm: 'Document',
-  },
-  ClientSideData: {
-    QueryAPI: 'Async',
-    PersistenceMechanism: 'IndexedDB',
-    PersistenceFeatures: 'Indexes',
-    DataModel: 'Document',
-    OfflineReads: 'Full Support',
-    OfflineWrites: 'Local conflict resolution',
-    DataSize: 'Up to 5-10 MB per document',
-  },
-  SynchronizationStrategy: {
-    FullOrPartialReplication: ['Full Replication'],
-    ConflictHandling: 'Automatic via CRDT',
-    WhereResolutionOccurs: 'Client',
-    WhatGetsSynced: {
-      ClientToClient: 'Ops',
-    },
+    Platform: ['js:browser'],
   },
 })

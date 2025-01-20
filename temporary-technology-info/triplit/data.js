@@ -39,7 +39,7 @@ export const data = LandscapeSchema.make({
     Authority: 'Centralized',
   },
   AuthIdentity: {
-    AuthenticationMethod: 'JWT Tokens',
+    AuthenticationMethod: ['JWT Tokens'],
     AuthorizationPermissions: 'Custom mapping from Schema to ACL roles',
   },
 })

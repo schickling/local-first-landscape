@@ -5,6 +5,7 @@ export const data = LandscapeSchema.make({
   Name: 'DXOS',
   Website: 'https://dxos.org',
   License: 'MIT',
+  Deployment: ['Self-hosted'],
   AppTarget: {
     Platform: ['js:browser', 'js:server-side'],
     LanguageSDK: ['typescript'],
@@ -14,13 +15,13 @@ export const data = LandscapeSchema.make({
     Topology: 'P2P',
   },
   ServerSideData: {
-    PersistenceMechanism: 'N/A',
+    PersistenceMechanism: ['N/A'],
     DataModelParadigm: 'Document',
   },
   ClientSideData: {
     QueryAPI: ['Async', 'Signals-based Reactivity'],
     LocalRefreshLatency: '10-50ms',
-    PersistenceMechanism: 'IndexedDB',
+    PersistenceMechanism: ['IndexedDB'],
     DataModel: 'Document',
     OfflineReads: 'Full Support',
     OfflineWrites: 'Full local conflict resolution',

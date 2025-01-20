@@ -5,7 +5,7 @@ export const data = LandscapeSchema.make({
   Name: 'Liveblocks Storage',
   Website: 'https://liveblocks.io',
   License: 'Proprietary',
-  Deployment: 'Hosted',
+  Deployment: ['Hosted'],
   AppTarget: {
     Platform: ['js:browser', 'js:server-side'],
     LanguageSDK: ['typescript'],
@@ -23,7 +23,7 @@ export const data = LandscapeSchema.make({
   },
   ClientSideData: {
     LocalRefreshLatency: '16ms',
-    PersistenceMechanism: 'Liveblocks Storage',
+    PersistenceMechanism: ['Liveblocks Storage'],
     DataModel: 'Document',
     SchemaManagement: ['Schema definition'],
     OfflineReads: 'Previously accessed data is stored in-memory',
@@ -42,13 +42,13 @@ export const data = LandscapeSchema.make({
   AuthIdentity: {
     Encryption: 'transport-level (wss:// or https://)',
     AuthenticationMethod: ['JWT tokens', 'Public key'],
-    AuthorizationPermissions: ['ID tokens', 'Access tokens'],
+    AuthorizationPermissions: 'ID tokens and Access tokens',
   },
   UIRelated: {
     Components: ['Comments/Threads', 'Notifications'],
   },
   DevelopmentWorkflowsDX: {
-    DebuggingTools: ['DevTools', 'Dashboard'],
+    DebuggingTools: ['DevTools', 'Dashboard', 'Data Inspector'],
     CLI: 'CLI for installing examples, updating packages, creating your typescript config',
     TypeSupport: 'Full type support (via liveblocks.config.ts)',
   },

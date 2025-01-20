@@ -18,15 +18,15 @@ export const data = LandscapeSchema.make({
     Topology: 'P2P',
   },
   ServerSideData: {
-    PersistenceMechanism: 'Custom',
+    PersistenceMechanism: ['Custom'],
     DataModelParadigm: 'Document',
     ExistingDatabaseSupport: 'HTTP/Webhooks and real-time via CDC Connectors (Kafka-based)',
     DataSize: 'No theoretical limit, due to cloud scaling, but we offer benchmarking and performance services to validate & scale cloud resources for larger use cases',
   },
   ClientSideData: {
-    QueryAPI: 'Async',
+    QueryAPI: ['Async'],
     LocalRefreshLatency: '10ms-2s depends on cardinality, query optimization plan, and local data size',
-    PersistenceMechanism: 'SQLite',
+    PersistenceMechanism: ['SQLite'],
     DataModel: 'Document',
     OfflineReads: 'Full Support',
     OfflineWrites: 'Full local conflict resolution',
@@ -43,13 +43,13 @@ export const data = LandscapeSchema.make({
   },
   AuthIdentity: {
     Encryption: 'Built-in e2ee',
-    AuthenticationMethod: 'JWT Tokens',
+    AuthenticationMethod: ['JWT Tokens'],
     AuthorizationPermissions: 'Custom-mapped ACLs',
   },
   UIRelated: {
     Components: ['Presence'],
   },
   DevelopmentWorkflowsDX: {
-    DebuggingTools: 'Open source debugging and diagnostic tools for developers',
+    DebuggingTools: ['DevTools', 'Data Inspector', 'Network Inspector'],
   },
 })

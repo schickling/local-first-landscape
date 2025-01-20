@@ -5,12 +5,12 @@ export const data = LandscapeSchema.make({
   Name: 'ElectricSQL',
   Website: 'https://electric-sql.com',
   License: 'Apache 2',
-  Deployment: 'Self-hosted',
+  Deployment: ['Self-hosted'],
   AppTarget: {
     Platform: ['js:browser', 'js:server-side'],
   },
   ServerSideData: {
-    PersistenceMechanism: 'Postgres',
+    PersistenceMechanism: ['Postgres'],
     DataModelParadigm: 'Relational',
   },
   ClientSideData: {

@@ -12,7 +12,7 @@ export const AppTarget = Schema.Struct({
     'macos',
     'wasm',
   )
-    .pipe(orString, Schema.Array, Schema.optional)
+    .pipe(orString, Schema.Array)
     .annotations({ description: 'The platform the app is targeting' }),
   LanguageSDK: Schema.Literal(
     'typescript',
@@ -68,10 +68,14 @@ export const ServerSideData = Schema.Struct({
   PersistenceMechanism: Schema.Literal(
     'S3 (or compatible)',
     'Postgres',
+    'MongoDB',
+    'MySQL',
+    'SQLite',
     'Custom',
     'N/A',
+    'Cloudflare Durable Object Storage',
   )
-    .pipe(orString, Schema.optional)
+    .pipe(orString, Schema.Array, Schema.optional)
     .annotations({
       description: '',
     }),
@@ -101,7 +105,7 @@ export const ServerSideData = Schema.Struct({
     'Validate schemas on write',
     'Schema migrations',
   )
-    .pipe(orString, Schema.optional)
+    .pipe(orString, Schema.Array, Schema.optional)
     .annotations({
       description: 'Supported features for working with schemas on the server.',
     }),
@@ -111,8 +115,13 @@ export const ServerSideData = Schema.Struct({
 })
 
 export const ClientSideData = Schema.Struct({
-  QueryAPI: Schema.Literal('Async', 'Sync', 'Signals-based Reactivity')
-    .pipe(orString, Schema.optional)
+  QueryAPI: Schema.Literal(
+    'Async',
+    'Sync',
+    'Signals-based Reactivity',
+    'Reactive relational queries',
+  )
+    .pipe(orString, Schema.Array, Schema.optional)
     .annotations({
       description: 'How the client queries the server for data.',
     }),
@@ -131,7 +140,7 @@ export const ClientSideData = Schema.Struct({
     'LevelDB',
     'RocksDB',
   )
-    .pipe(orString, Schema.optional)
+    .pipe(orString, Schema.Array, Schema.optional)
     .annotations({
       description: 'How the client persists data.',
     }),
@@ -155,7 +164,7 @@ export const ClientSideData = Schema.Struct({
     'Schema validation on write',
     'Schema migrations',
   )
-    .pipe(orString, Schema.optional)
+    .pipe(orString, Schema.Array, Schema.optional)
     .annotations({
       description: 'Supported features for working with schemas on the client.',
     }),
@@ -245,7 +254,7 @@ export const AuthIdentity = Schema.Struct({
     'JWT Tokens',
     'Public keys',
   )
-    .pipe(orString, Schema.optional)
+    .pipe(orString, Schema.Array, Schema.optional)
     .annotations({
       description: 'The method of authentication.',
     }),
@@ -268,9 +277,16 @@ export const UIRelated = Schema.Struct({
 })
 
 export const DevelopmentWorkflowsDX = Schema.Struct({
-  DebuggingTools: Schema.String.pipe(Schema.optional).annotations({
-    description: 'Debugging tools for developers.',
-  }),
+  DebuggingTools: Schema.Literal(
+    'DevTools',
+    'Dashboard',
+    'Data Inspector',
+    'Network Inspector',
+  )
+    .pipe(orString, Schema.Array, Schema.optional)
+    .annotations({
+      description: 'Debugging tools for developers.',
+    }),
   CLI: Schema.String.pipe(Schema.optional).annotations({
     description: 'Command line interface for developers.',
   }),
@@ -306,7 +322,7 @@ export const LandscapeSchema = Schema.Struct({
     description: 'The website of the technology or product.',
   }),
   Deployment: Schema.Literal('Self-hosted', 'Hosted')
-    .pipe(orString)
+    .pipe(orString, Schema.Array)
     .annotations({}),
   License: Schema.Literal(
     'Proprietary',
